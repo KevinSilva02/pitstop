@@ -1,7 +1,18 @@
-import { View } from 'react-native'
+import { TextInput, TextInputProps } from 'react-native'
+import { style } from './style'
 
-export default function Input(){
+type Props = TextInputProps & {
+    placeholder: string
+}
+
+export default function Input({placeholder, ...rest} : Props){
     return(
-        <View></View>
+        <TextInput
+            style={style.input}
+            placeholder={placeholder}
+            {...rest}
+        >
+
+        </TextInput>
     )
 }
