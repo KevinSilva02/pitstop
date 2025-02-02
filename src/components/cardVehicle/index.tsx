@@ -10,9 +10,9 @@ type Props = PressableProps & {
     Tipo: string
 }
 
-export default function CardVehicle({Id, Marca, Modelo, Tipo, ...resr}:Props) {
+export default function CardVehicle({Id, Marca, Modelo, Tipo, ...rest}:Props) {
     return(
-        <Pressable style={style.container}>
+        <Pressable style={style.container} {...rest}>
             {
                 Tipo === "Carro" ?
             <FontAwesome5 name="car" size={24} color="black" /> :

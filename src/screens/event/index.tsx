@@ -4,6 +4,7 @@ import Header from '../../components/header'
 import Button from '../../components/button'
 import { useState } from 'react'
 import CardEvent from '../../components/cardEvent'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
 type EventProps = {
     Id: string,
@@ -13,19 +14,25 @@ type EventProps = {
     data: string,
 }
 
-const Evento = [
-    {
-    Id: '1',
-    Titulo: "Troca de oleo",
-    KmAtual: 150000,
-    KmProx: 160000,
-    data: "01/01/2026"
+type RouteParams = {
+    vehicleId: string
 }
-]
+
+
 
 
 export default function Event(){
     const [event, setEvent] = useState<EventProps[]>([])
+    
+
+    const navigation = useNavigation()
+    const route = useRoute()
+
+    const { vehicleId } = route.params as RouteParams
+    
+    function handleNewEvent(){
+        navigation.navigate('newEvent', {vehicleId})
+    }
     return(
         <View style={style.container}>
             <Header title='Eventos' />
@@ -41,7 +48,7 @@ export default function Event(){
                     </View>
                 )}
             />
-            <Button Title='Cadastrar Novo Evento' />
+            <Button Title='Cadastrar Novo Evento' onPress={handleNewEvent} />
         </View>
     )
 }

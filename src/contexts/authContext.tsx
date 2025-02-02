@@ -32,7 +32,7 @@ export default function AuthContextProvider({children}: any){
         }
     }
     function logOut(){
-        setUser({id: '', nome: '', email: ''})
+        setUser(undefined)
     }
 
     return(
